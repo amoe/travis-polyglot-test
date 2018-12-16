@@ -3,4 +3,4 @@ python:
   - 3.5
 script:
   - java -version
-  - pytest
+  - pytest test.py
