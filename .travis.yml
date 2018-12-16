@@ -1,8 +1,10 @@
+# bugs
+
 language: python
 dist: xenial
 python:
   - 3.5
 script:
-  - java -version
   - sudo apt install openjdk-8-jdk
+  - java -version
   - pytest test.py
