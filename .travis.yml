@@ -12,5 +12,6 @@ script:
   - sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
   - which java
   - echo $PATH
-  - java -version
+  - /usr/local/lib/jvm/openjdk11/bin/java -version
+  - /usr/bin/java -version
   - pytest test.py
