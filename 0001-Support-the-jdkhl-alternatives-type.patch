@@ -1,0 +1,52 @@
+From 31e435b842b10fceb6e3bcc07f5f49f344cec050 Mon Sep 17 00:00:00 2001
+From: Dominic Hargreaves <dom@earth.li>
+Date: Thu, 23 Jun 2016 15:02:37 +0100
+Subject: [PATCH] Support the jdkhl alternatives type
+
+Since 8u72-b15-3 a new jdkhl label was introduced into the jinfo files
+used by update-java-alternatives. Without this change, some alternatives
+will not be updated correctly.
+
+Bug-Debian: https://bugs.debian.org/825987
+---
+ scripts/update-java-alternatives | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/update-java-alternatives b/scripts/update-java-alternatives
+index 9eea19c..6684bad 100755
+--- a/scripts/update-java-alternatives
++++ b/scripts/update-java-alternatives
+@@ -8,7 +8,7 @@ usage()
+ {
+     rv=$1
+     cat >&2 <<-EOF
+-	usage: $prog [--jre-headless] [--jre] [--plugin] [-v|--verbose]
++	usage: $prog [--jre-headless] [--jre] [--jdk-headless] [--plugin] [-v|--verbose]
+ 	           -l|--list [<jname>]
+ 	           -s|--set <jname>
+ 	           -a|--auto
+@@ -27,6 +27,8 @@ while [ "$#" -gt 0 ]; do
+ 	action=auto;;
+       -hl|--jre-headless)
+ 	hlonly=yes;;
++      -jdkhl|--jdk-headless)
++	jdkhlonly=yes;;
+       -j|--jre)
+ 	jreonly=yes;;
+       --plugin)
+@@ -63,10 +65,11 @@ done
+ [ "$#" -eq 0 ] || usage 1
+ [ -n "$action" ] || usage 1
+ 
+-which='^(hl|jre|jdk|plugin|DUMMY) '
++which='^(hl|jre|jdk|jdkhl|plugin|DUMMY) '
+ if [ -n "$hlonly$jreonly$pluginonly" ]; then
+     which='^('
+     [ -n "$hlonly" ] && which="${which}hl|"
++    [ -n "$jdkhlonly" ] && which="${which}jdkhl|"
+     [ -n "$jreonly" ] && [ -n "$hlonly" ] && which="${which}jre|"
+     [ -n "$jreonly" ] && [ -z "$hlonly" ] && which="${which}hl|jre|"
+     [ -n "$pluginonly" ] && which="${which}plugin|"
+-- 
+2.1.4
+
