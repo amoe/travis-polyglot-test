@@ -10,5 +10,6 @@ script:
   - java -version
   - sudo patch -d /usr/sbin < 0001-Support-the-jdkhl-alternatives-type.patch
   - sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
+  - which java
   - java -version
   - pytest test.py
