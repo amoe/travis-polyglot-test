@@ -6,6 +6,7 @@ python:
   - 3.5
 script:
   - sudo apt install openjdk-8-jdk icedtea-8-plugin
+  - sudo apt-show-versions java-common
   - java -version
   - sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
   - java -version
