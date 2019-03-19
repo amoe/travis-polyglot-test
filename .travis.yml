@@ -15,3 +15,5 @@ script:
   - /usr/local/lib/jvm/openjdk11/bin/java -version
   - /usr/bin/java -version
   - pytest test.py
+  - export PATH=/usr/bin
+  - java -version
