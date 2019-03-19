@@ -15,5 +15,6 @@ script:
   - pytest test.py
   - . ./jdk_switcher.sh
   - jdk_switcher use openjdk8
+  - java -version
   # - export PATH=/usr/bin
   # - java -version
