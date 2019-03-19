@@ -13,6 +13,7 @@ script:
   - /usr/local/lib/jvm/openjdk11/bin/java -version
   - /usr/bin/java -version
   - pytest test.py
-  - find / -name '*jdk_switcher*' -print 2>/dev/null
+  - . ./jdk_switcher.sh
+  - jdk_switcher use openjdk8
   # - export PATH=/usr/bin
   # - java -version
