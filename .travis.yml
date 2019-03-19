@@ -1,5 +1,3 @@
-# bugs
-
 language: python
 dist: xenial
 python:
